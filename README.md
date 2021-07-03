@@ -1,3 +1,6 @@
+
+
+
 # Number-Guessing-Game-Skaehub-Bootcamp
 This was a final project at the Skaehub Boot-camp project
 ## Number guessing game
@@ -23,6 +26,10 @@ To run the Tests please install pytest
 run pip install pytest in the terminal
 
 ### Demo
+
+
+https://user-images.githubusercontent.com/65704925/124351792-07e00080-dc05-11eb-82d3-664ad65920bf.mov
+
 
 
 ### Credits
