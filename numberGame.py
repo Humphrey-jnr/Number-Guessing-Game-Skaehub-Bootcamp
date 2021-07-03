@@ -1,4 +1,3 @@
-from numberGameOOP import check
 import random
 import re
 import os
