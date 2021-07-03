@@ -1,4 +1,3 @@
-from random import gauss
 import unittest
 import numberGame
 from unittest.mock import patch
