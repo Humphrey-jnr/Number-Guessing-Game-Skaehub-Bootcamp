@@ -1,6 +1,5 @@
 import random
 import re
-import os
 from twilio.rest import Client
 from colorama import Fore, Back, Style
 
@@ -8,11 +7,6 @@ score_normal=10
 score_repeat=5
 score_fail=0
 
-
-
-#function to clear the console
-def clear():
-    os.system('clear')
 
 #the  funtion that hints the user for input
 def hint():
