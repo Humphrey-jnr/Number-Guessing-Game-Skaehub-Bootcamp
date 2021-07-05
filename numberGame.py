@@ -25,33 +25,40 @@ def hint():
         print("""\nHint:
             \n"The number is odd""")
 
-#the function that asks the user for input
 def user_guess():
-        try:
-            u_guess=input("Enter your guess between 1 and 100 : ")
-            global guess
-            guess=int(u_guess)
-            if guess>0 and guess<100:
-                    diff=number-guess
-                    print("Difference between actual number and guess is :"+str(diff))
-                    print("You entered :"+str(guess))
-                    return guess
-            else:
-                print("Your guess is out of range,Enter a number within the given range!")
-                user_guess()
-                return 'error'
-        except:
-             print("Enter a valid number of type int:")
-             user_guess()
-             return guess
+    global u_guess
+    u_guess=input("Enter your guess between 1 and 100 : ")
+    user_guess_validation()
+
+    
+
+#the function that asks the user for input
+def user_guess_validation():
+    #check for data type of input
+    try:
+        global guess
+        guess=int(u_guess)
+    except:
+        print("Enter a valid number of type int:")
+        user_guess()
+        return 'invalid'
+    #check for input range
+    if guess>0 and guess<100:
+            diff=number-guess
+            print("Difference between actual number and guess is :"+str(diff))
+            print("You entered :"+str(guess))
+            return 'valid'
+    else:
+        print("Your guess is out of range,Enter a number within the given range!")
+        user_guess()
             
+     
 
 #function that checks for the right score
 def check():       
     if guess==number:
         print("Your score is :"+str(score_normal))
         message(score_normal)
-        return True
     else:
         print("\nYou got it wrong")
         print("Try again")
@@ -60,7 +67,6 @@ def check():
             hint()
             user_guess()
             repeat_check()
-        return False
 
 #function that does a repeat check if the user fails initial try
 def repeat_check():
@@ -89,23 +95,30 @@ def multiple_check():
 
 def enter_phone():
     global phone_number
-    phone_number=str(input("Enter your Phone number: "))
-    sleep(2)
-    clear()
+    phone_number=input("Enter your Phone number: ")
+    phone_checker()
+
+def phone_checker():
+    global phone_check
     phone_check = re.match(r'^[+][0-9]', phone_number)
     if bool(phone_check)==True and len(phone_number)==13:
-        print(phone_number)
-        return phone_number
+        print("Your phone number is"+phone_number)
+        return True
     else:
         print("Enter a valid Phone number")
         enter_phone()
-        return phone_number
+        return False
+
 #function to send the message
 def message(score):
-    client = Client("ACc57459795cd42b520978ecf3b5413641", "32d4a914d0bbe4daeae97d9b282a99ac")
-    client.messages.create(to=f"{phone_number}", 
-                       from_="+15097403668", 
-                       body="Your game score is"+str(score))
+    client = Client("AC*************************", "************************************")
+    try:
+        client.messages.create(to=f"{phone_number}", 
+                            from_="+15097403668", 
+                            body="Your game score is"+str(score))
+        print("Your score has been sent to your phone")
+    except:
+        print("SMS Not Sent")
                        
 if __name__=="__main__":
     number=random.randrange(1,101)
