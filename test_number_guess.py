@@ -1,4 +1,3 @@
-from io import StringIO
 import unittest
 import numberGame
 from unittest.mock import patch
