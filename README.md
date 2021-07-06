@@ -23,7 +23,8 @@ Twilio messaging API-For sending SMS messages to users
 
 ### Tests
 To run the Tests please install pytest 
-run pip install pytest in the terminal
+run _pip install pytest_ in the terminal
+While writing the tests I used mock to mock user inputs and a module I found from this github account: https://gist.github.com/mauricioaniche/671fb553a81df9e6b29434b7e6e53491
 
 ### Demo
 
