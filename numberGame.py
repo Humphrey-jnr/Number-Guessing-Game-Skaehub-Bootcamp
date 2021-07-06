@@ -7,7 +7,6 @@ score_normal=10
 score_repeat=5
 score_fail=0
 
-
 #the  funtion that hints the user for input
 def hint():
     if int(number/2)*2==number:
@@ -18,35 +17,35 @@ def hint():
         print("""\nHint:
             \n"The number is odd""")
 
+#the function that asks the user for input
 def user_guess():
     global u_guess
     u_guess=input("Enter your guess between 1 and 100 : ")
     user_guess_validation()
 
-    
-
-#the function that asks the user for input
+#check for valid input
 def user_guess_validation():
-    #check for data type of input
     try:
         global guess
         guess=int(u_guess)
+        print("Your guess is "+str(guess))
+        guess_num_difference()
+        return 'valid'
     except:
         print("Enter a valid number of type int:")
         user_guess()
         return 'invalid'
-    #check for input range
+   
+def guess_num_difference():  
     if guess>0 and guess<100:
+        if number>guess:
             diff=number-guess
-            print("Difference between actual number and guess is :"+str(diff))
-            print("You entered :"+str(guess))
-            return 'valid'
-    else:
-        print("Your guess is out of range,Enter a number within the given range!")
-        user_guess()
-            
-     
+        else:
+            diff=guess-number
 
+        print("Difference between the number and your guess is: "+str(diff))
+    
+  
 #function that checks for the right score
 def check():       
     if guess==number:
@@ -55,7 +54,7 @@ def check():
     else:
         print("\nYou got it wrong")
         print("Try again")
-        for i in range(1):
+        for i in range(2):
             multiple_check()
             hint()
             user_guess()
@@ -89,9 +88,9 @@ def multiple_check():
 def enter_phone():
     global phone_number
     phone_number=input("Enter your Phone number: ")
-    phone_checker()
-
-def phone_checker():
+    phone_validation()
+    
+def phone_validation():
     global phone_check
     phone_check = re.match(r'^[+][0-9]', phone_number)
     if bool(phone_check)==True and len(phone_number)==13:
@@ -104,7 +103,7 @@ def phone_checker():
 
 #function to send the message
 def message(score):
-    client = Client("AC*************************", "************************************")
+    client = Client("ACc57459795cd42b520978ecf3b5413641", "32d4a914d0bbe4daeae97d9b282a99ac")
     try:
         client.messages.create(to=f"{phone_number}", 
                             from_="+15097403668", 
