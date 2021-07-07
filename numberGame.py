@@ -2,10 +2,17 @@ import random
 import re
 from twilio.rest import Client
 from colorama import Fore, Back, Style
+import os
+import time
+
 
 score_normal=10
 score_repeat=5
 score_fail=0
+
+#function to clear the console
+def clear():
+    os.system("clear")
 
 #the  funtion that hints the user for input
 def hint():
@@ -32,6 +39,7 @@ def user_guess_validation():
         guess_num_difference()
         return 'valid'
     except:
+        clear()
         print("Enter a valid number of type int:")
         user_guess()
         return 'invalid'
@@ -54,7 +62,7 @@ def check():
     else:
         print("\nYou got it wrong")
         print("Try again")
-        for i in range(2):
+        for i in range(1):
             multiple_check()
             hint()
             user_guess()
@@ -87,7 +95,8 @@ def multiple_check():
 
 def enter_phone():
     global phone_number
-    phone_number=input("Enter your Phone number: ")
+    phone_number=input("\nEnter your Phone number: ")
+    clear()
     phone_validation()
     
 def phone_validation():
@@ -103,18 +112,22 @@ def phone_validation():
 
 #function to send the message
 def message(score):
-    client = Client("ACc57459795cd42b520978ecf3b5413641", "32d4a914d0bbe4daeae97d9b282a99ac")
+    client = Client("ACc57459795cd42b520978ecf3b5413641", "691ee3ec98714c14a7791a3b27f1b0fd")
     try:
         client.messages.create(to=f"{phone_number}", 
                             from_="+15097403668", 
                             body="Your game score is"+str(score))
-        print("Your score has been sent to your phone")
+        print("Your score has been sent to you")
     except:
         print("SMS Not Sent")
                        
 if __name__=="__main__":
     number=random.randrange(1,101)
-    print(Back.LIGHTCYAN_EX+Fore.BLACK+"\n*********NUMBER_GUESSING_GAME*********"+Back.RESET+Fore.RESET)
+    print(Back.LIGHTCYAN_EX+Fore.BLACK+"*********NUMBER_GUESSING_GAME*********"+Back.RESET+Fore.RESET)
+    print(Back.RED+Fore.LIGHTWHITE_EX+"""This a Number Guessing Game Where the system generates a random number and you have to guess the number!
+    \nYou have only two tries,if you fail the first try your possible score reduces."""+Back.RESET+Fore.RESET)
+    time.sleep(3)
+    clear()
     enter_phone()
     hint()
     user_guess()
