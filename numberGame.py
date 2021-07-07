@@ -112,7 +112,7 @@ def phone_validation():
 
 #function to send the message
 def message(score):
-    client = Client("ACc57459795cd42b520978ecf3b5413641", "691ee3ec98714c14a7791a3b27f1b0fd")
+    client = Client("ACc*****************", "************************")
     try:
         client.messages.create(to=f"{phone_number}", 
                             from_="+15097403668", 
